@@ -39,16 +39,15 @@ class Programa {
 
                     opcao2 = converteInt(reader.readLine());
 
-                    if (opcao2 == 1) {
-                        Pessoa pessoa = new Pessoa();
+                    if (opcao2 == 1) {                       
 
                         System.out.println("Primeiro nome da pessoa:");
-                        pessoa.nome = reader.readLine();
+                        String nome = reader.readLine();
 
                         System.out.println("Sobrenome da pessoa:");
-                        pessoa.sobrenome = reader.readLine();
+                        String sobrenome = reader.readLine();
 
-                        pessoa.nomeCompleto = pessoa.nome + " " + pessoa.sobrenome;
+                        Pessoa pessoa = new Pessoa(nome, sobrenome);
 
                         pessoasCadastradas.add(pessoa);
 
@@ -234,12 +233,12 @@ class Programa {
 
                         System.out.println(salaA.nome + " Etapa 1");
                         for (Pessoa pessoa : salaA.pessoasEtapa1) {
-                            System.out.println(pessoa.nomeCompleto);
+                            System.out.println(pessoa.getNomeCompleto());
                         }
 
                         System.out.println(salaA.nome + " Etapa 2");
                         for (Pessoa pessoa : salaA.pessoasEtapa2) {
-                            System.out.println(pessoa.nomeCompleto);
+                            System.out.println(pessoa.getNomeCompleto());
                         }
 
                         //
@@ -264,14 +263,14 @@ class Programa {
                             int indice = 0;
                             for (Pessoa pessoa : pessoasCadastradas) {
                                 indice = indice + 1;
-                                System.out.println(" " + indice + ")" + pessoa.nomeCompleto);
+                                System.out.println(" " + indice + ")" + pessoa.getNomeCompleto());
                             }
 
                             opcao3 = converteInt(reader.readLine());
 
                             Pessoa pessoa = pessoasCadastradas.get(opcao3 - 1);
 
-                            System.out.println("Aluno(a) escolhido(a): " + pessoa.nomeCompleto);
+                            System.out.println("Aluno(a) escolhido(a): " + pessoa.getNomeCompleto());
 
                             for (Sala sala : salasCadastradas) {
                                 if (sala.pessoasEtapa1.contains(pessoa)) {
@@ -310,13 +309,13 @@ class Programa {
                             System.out.println("Sala escolhida: " + sala.nome + "\nAluno(s) nesta sala (1 Etapa):");
 
                             for (Pessoa pessoa : sala.pessoasEtapa1) {
-                                System.out.println(" " + pessoa.nomeCompleto);
+                                System.out.println(" " + pessoa.getNomeCompleto());
                             }
 
                             System.out.println("Sala escolhida: " + sala.nome + "\nAluno(s) nesta sala (2 Etapa):");
 
                             for (Pessoa pessoa : sala.pessoasEtapa2) {
-                                System.out.println(" " + pessoa.nomeCompleto);
+                                System.out.println(" " + pessoa.getNomeCompleto());
                             }
                         } else {
                             System.out.println("Não há salas cadastradas");
@@ -340,7 +339,7 @@ class Programa {
                             System.out.println("Espaço de café escolhido: " + espacoCafe.nome + "\nAluno(s) neste espaço:");
 
                             for (Pessoa pessoa : espacoCafe.pessoas) {
-                                System.out.println(" " + pessoa.nomeCompleto);
+                                System.out.println(" " + pessoa.getNomeCompleto());
                             }
                         } else {
                             System.out.println("Não há espaços de café cadastrados");
