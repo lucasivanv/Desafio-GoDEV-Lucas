@@ -227,25 +227,6 @@ class Programa {
 
                         } while (metadeSala > contadorPessoas + 1);
 
-                        //
-                        // APAGAR ABAIXO
-                        //
-                        //
-
-                        System.out.println(salaA.nome + " Etapa 1");
-                        for (Pessoa pessoa : salaA.pessoasEtapa1) {
-                            System.out.println(pessoa.getNomeCompleto());
-                        }
-
-                        System.out.println(salaA.nome + " Etapa 2");
-                        for (Pessoa pessoa : salaA.pessoasEtapa2) {
-                            System.out.println(pessoa.getNomeCompleto());
-                        }
-
-                        //
-                        // APAGAR ACIMA
-                        //
-                        //
                     } while (contadorSalas != salasCadastradas.size() - 1);
                 }
 
