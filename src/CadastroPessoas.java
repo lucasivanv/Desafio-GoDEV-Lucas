@@ -66,13 +66,14 @@ class Programa {
                     } else if (opcao2 == 3) {
 
                         if (espacosCadastrados.size() < 2) {
-                            EspacoCafe espacoCafe = new EspacoCafe();
 
                             System.out.println("Nome do espaço de café:");
-                            espacoCafe.nome = reader.readLine();
+                            String nome = reader.readLine();
 
                             System.out.println("Lotação máxima:");
-                            espacoCafe.lotacao = converteInt(reader.readLine());
+                            int lotacao = converteInt(reader.readLine());
+
+                            EspacoCafe espacoCafe = new EspacoCafe(nome, lotacao);
 
                             espacosCadastrados.add(espacoCafe);
                         } else {
@@ -110,7 +111,7 @@ class Programa {
                 }
 
                 for (EspacoCafe espacoCafe : espacosCadastrados) {
-                    espacoCafe.pessoas.clear();
+                    espacoCafe.esvaziaEspaco();
                 }
 
                 int proximaSala = -1;
@@ -283,8 +284,8 @@ class Programa {
                             }
 
                             for (EspacoCafe espacoCafe : espacosCadastrados) {
-                                if (espacoCafe.pessoas.contains(pessoa)) {
-                                    System.out.println(" Espaço de café presente: " + espacoCafe.nome);
+                                if (espacoCafe.contemPessoa(pessoa)) {
+                                    System.out.println(" Espaço de café presente: " + espacoCafe.getNome());
                                 }
                             }
 
@@ -329,16 +330,16 @@ class Programa {
                             int indice = 0;
                             for (EspacoCafe espacoCafe : espacosCadastrados) {
                                 indice = indice + 1;
-                                System.out.println(" " + indice + ")" + espacoCafe.nome);
+                                System.out.println(" " + indice + ")" + espacoCafe.getNome());
                             }
 
                             opcao3 = converteInt(reader.readLine());
 
                             EspacoCafe espacoCafe = espacosCadastrados.get(opcao3 - 1);
 
-                            System.out.println("Espaço de café escolhido: " + espacoCafe.nome + "\nAluno(s) neste espaço:");
+                            System.out.println("Espaço de café escolhido: " + espacoCafe.getNome() + "\nAluno(s) neste espaço:");
 
-                            for (Pessoa pessoa : espacoCafe.pessoas) {
+                            for (Pessoa pessoa : espacoCafe.getPessoas()) {
                                 System.out.println(" " + pessoa.getNomeCompleto());
                             }
                         } else {
