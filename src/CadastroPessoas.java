@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class Programa {
@@ -12,6 +13,26 @@ class Programa {
         } catch (NumberFormatException e) {
             return Integer.MAX_VALUE; //ATENCAO AQUI PARA LOTACAO DA SALA
         }
+    }
+
+    public static int getLotacaoMaxima(List<Sala> salasCadastradas) {
+        List<Integer> list = new ArrayList<>();
+
+        if (salasCadastradas.size() == 1) {
+
+            Sala sala = salasCadastradas.get(0);
+
+            return sala.lotacao;
+
+        } else {
+            for (Sala sala : salasCadastradas) {
+                list.add(sala.lotacao);
+            }
+
+            int i = Collections.min(list) + 1;
+            return i;
+        }
+
     }
 
     public static void main(String[] args) throws IOException {
@@ -39,7 +60,7 @@ class Programa {
 
                     opcao2 = converteInt(reader.readLine());
 
-                    if (opcao2 == 1) {                       
+                    if (opcao2 == 1) {
 
                         System.out.println("Primeiro nome da pessoa:");
                         String nome = reader.readLine();
@@ -86,24 +107,8 @@ class Programa {
 
                 } while (opcao2 != 4);
 
-                int lotacaoMaximaSalas = Integer.MAX_VALUE;
 
-                if (salasCadastradas.size() != 0) {
-                    if (salasCadastradas.size() > 1) {
-                        for (int i = 0; i < salasCadastradas.size() - 1; ++i) {
-                            Sala sala1 = salasCadastradas.get(i);
-                            Sala sala2 = salasCadastradas.get(i + 1);
-
-                            if (lotacaoMaximaSalas > sala1.lotacao && lotacaoMaximaSalas > sala2.lotacao) {
-                                lotacaoMaximaSalas = Math.min(sala1.lotacao, sala2.lotacao) + 1;
-                            }
-                        }
-                    } else {
-                        Sala sala1 = salasCadastradas.get(0);
-
-                        lotacaoMaximaSalas = sala1.lotacao;
-                    }
-                }
+                int lotacaoMaximaSalas = getLotacaoMaxima(salasCadastradas);
 
                 for (Sala sala : salasCadastradas) {
                     sala.pessoasEtapa1.clear();
