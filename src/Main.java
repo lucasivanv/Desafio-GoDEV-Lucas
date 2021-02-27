@@ -2,13 +2,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Programa {
+class Main {
 
     public static int converteInt(String integer) {
         try {
             return Integer.parseInt(integer);
         } catch (NumberFormatException e) {
-            return Integer.MAX_VALUE; //ATENCAO AQUI PARA LOTACAO DA SALA
+            return -1;
         }
     }
 
@@ -18,7 +18,6 @@ class Programa {
         int opcao1;
         int opcao2;
         int opcao3;
-
 
         Curso curso = new Curso();
 
@@ -49,8 +48,16 @@ class Programa {
                         System.out.println("Nome da sala:");
                         String nome = reader.readLine();
 
-                        System.out.println("Lotação máxima:");
-                        int lotacao = converteInt(reader.readLine());
+                        int lotacao;
+
+                        do {
+                            System.out.println("Lotação máxima:");
+                            lotacao = converteInt(reader.readLine());
+
+                            if (lotacao <= 0) {
+                                System.out.println("Lotação inválida, tente novamente");
+                            }
+                        } while (lotacao <= 0);
 
                         curso.cadastraSala(nome, lotacao);
 
@@ -61,8 +68,16 @@ class Programa {
                             System.out.println("Nome do espaço de café:");
                             String nome = reader.readLine();
 
-                            System.out.println("Lotação máxima:");
-                            int lotacao = converteInt(reader.readLine());
+                            int lotacao;
+
+                            do {
+                                System.out.println("Lotação máxima:");
+                                lotacao = converteInt(reader.readLine());
+
+                                if (lotacao <= 0) {
+                                    System.out.println("Lotação inválida, tente novamente");
+                                }
+                            } while (lotacao <= 0);
 
                             curso.cadastraEspaco(nome, lotacao);
 
