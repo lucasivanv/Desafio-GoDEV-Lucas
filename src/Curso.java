@@ -50,54 +50,11 @@ public class Curso {
     }
 
     private void distribuiPessoasSalas() {
-        int proximaSala = -1;
-        int lotacaoOcupadaSalas = 0;
+        distribuiPessoasEtapa1();
+        distribuiPessoasEtapa2();
+    }
 
-        for (Sala sala : salasCadastradas) {
-            sala.esvaziaEtapas();
-        }
-
-
-        for (int i = 0; i < pessoasCadastradas.size(); ++i) {
-
-            Pessoa pessoa = pessoasCadastradas.get(i);
-
-            proximaSala = proximaSala + 1;
-
-            if (salasCadastradas.size() != 0) {
-
-                int lotacaoMaximaSalas = getLotacaoMaxima();
-
-                if (proximaSala < salasCadastradas.size()) {
-
-                    Sala sala = salasCadastradas.get(proximaSala);
-
-                    sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
-
-                } else {
-                    lotacaoOcupadaSalas = lotacaoOcupadaSalas + 1;
-
-                    if (lotacaoOcupadaSalas < lotacaoMaximaSalas - 1) {
-
-                        proximaSala = 0;
-
-                        Sala sala = salasCadastradas.get(proximaSala);
-
-                        sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
-
-                    } else {
-                        for (Sala sala : salasCadastradas) {
-
-                            boolean adicionouNaSala = sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
-
-                            if (adicionouNaSala) {
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    private void distribuiPessoasEtapa2() {
         for (Sala sala : salasCadastradas) {
             sala.pessoasEtapa2.addAll(sala.pessoasEtapa1);
         }
@@ -120,7 +77,7 @@ public class Curso {
 
             contadorPessoas = -1;
 
-            int metadeSala = (int) Math.floor(lotacaoOcupadaSalas / 2.0);
+            int metadeSala = (int) Math.ceil(getMaiorOcupacaoSalas() / 2.0);
 
             do {
                 contadorPessoas = contadorPessoas + 1;
@@ -130,7 +87,54 @@ public class Curso {
             } while (metadeSala > contadorPessoas + 1);
 
         } while (contadorSalas != salasCadastradas.size() - 1);
+    }
 
+    private void distribuiPessoasEtapa1() {
+        int proximaSala = -1;
+        int ocupacaoSalas = 0;
+
+        for (Sala sala : salasCadastradas) {
+            sala.esvaziaEtapas();
+        }
+
+        for (Pessoa pessoa : pessoasCadastradas) {
+
+            proximaSala += 1;
+
+            if (salasCadastradas.size() != 0) {
+
+                int lotacaoMaximaSalas = getLotacaoMaxima();
+
+                if (proximaSala < salasCadastradas.size()) {
+
+                    Sala sala = salasCadastradas.get(proximaSala);
+
+                    sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
+
+                } else {
+                    ocupacaoSalas = ocupacaoSalas + 1;
+
+                    if (ocupacaoSalas < lotacaoMaximaSalas - 1) {
+
+                        proximaSala = 0;
+
+                        Sala sala = salasCadastradas.get(proximaSala);
+
+                        sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
+
+                    } else {
+                        for (Sala sala : salasCadastradas) {
+
+                            boolean adicionouNaSala = sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
+
+                            if (adicionouNaSala) {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void distribuiPessoasEspacos() {
@@ -174,6 +178,18 @@ public class Curso {
                 }
             }
         }
+    }
+
+    private int getMaiorOcupacaoSalas() {
+
+        int maiorOcupacao = 0;
+
+        for (Sala sala : salasCadastradas) {
+            if (sala.pessoasEtapa1.size() > maiorOcupacao) {
+                maiorOcupacao = sala.pessoasEtapa1.size();
+            }
+        }
+        return maiorOcupacao;
     }
 }
 
