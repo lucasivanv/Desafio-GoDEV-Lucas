@@ -91,6 +91,8 @@ class Main {
 
                 } while (opcao2 != 4);
 
+                curso.quantidadePessoasPorLotacao();
+
                 curso.distribuiPessoas();
 
             } else if (opcao1 == 2) {
@@ -118,11 +120,11 @@ class Main {
 
                             for (Sala sala : curso.salasCadastradas) {
                                 if (sala.pessoasEtapa1.contains(pessoa)) {
-                                    System.out.println(" Sala presente (1 Etapa): " + sala.nome);
+                                    System.out.println(" Sala presente (1 Etapa): " + sala.getNome());
                                 }
 
                                 if (sala.pessoasEtapa2.contains(pessoa)) {
-                                    System.out.println(" Sala presente (2 Etapa): " + sala.nome);
+                                    System.out.println(" Sala presente (2 Etapa): " + sala.getNome());
                                 }
                             }
 
@@ -143,20 +145,20 @@ class Main {
                             int indice = 0;
                             for (Sala sala : curso.salasCadastradas) {
                                 indice = indice + 1;
-                                System.out.println(" " + indice + ")" + sala.nome);
+                                System.out.println(" " + indice + ")" + sala.getNome());
                             }
 
                             opcao3 = converteInt(reader.readLine());
 
                             Sala sala = curso.salasCadastradas.get(opcao3 - 1);
 
-                            System.out.println("Sala escolhida: " + sala.nome + "\nAluno(s) nesta sala (1 Etapa):");
+                            System.out.println("Sala escolhida: " + sala.getNome() + "\nAluno(s) nesta sala (1 Etapa):");
 
                             for (Pessoa pessoa : sala.pessoasEtapa1) {
                                 System.out.println(" " + pessoa.getNomeCompleto());
                             }
 
-                            System.out.println("Sala escolhida: " + sala.nome + "\nAluno(s) nesta sala (2 Etapa):");
+                            System.out.println("Sala escolhida: " + sala.getNome() + "\nAluno(s) nesta sala (2 Etapa):");
 
                             for (Pessoa pessoa : sala.pessoasEtapa2) {
                                 System.out.println(" " + pessoa.getNomeCompleto());

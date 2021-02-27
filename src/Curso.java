@@ -33,15 +33,35 @@ public class Curso {
 
             Sala sala = salasCadastradas.get(0);
 
-            return sala.lotacao;
+            return sala.getLotacao();
 
         } else {
             for (Sala sala : salasCadastradas) {
-                list.add(sala.lotacao);
+                list.add(sala.getLotacao());
             }
 
-            return Collections.min(list) + 1;    // E se todas as salas tiverem a mesma lotação (por causa do +1)?
+            return Collections.min(list) + 1;
         }
+    }
+
+    public String quantidadePessoasPorLotacao() {
+
+        int somaTotalLotacoes = 0;
+
+        for (Sala sala : salasCadastradas) {
+            somaTotalLotacoes += sala.getLotacao();
+        }
+
+        if (somaTotalLotacoes < pessoasCadastradas.size()) {
+            System.out.println("Aviso: o número de pessoas cadastradas é superior a soma das lotações de todas as salas");
+        }
+
+        for (EspacoCafe espacoCafe : espacosCadastrados) {
+            somaTotalLotacoes += espacoCafe.getLotacao();
+
+        }
+
+        return null;
     }
 
     public void distribuiPessoas() {
@@ -52,41 +72,6 @@ public class Curso {
     private void distribuiPessoasSalas() {
         distribuiPessoasEtapa1();
         distribuiPessoasEtapa2();
-    }
-
-    private void distribuiPessoasEtapa2() {
-        for (Sala sala : salasCadastradas) {
-            sala.pessoasEtapa2.addAll(sala.pessoasEtapa1);
-        }
-
-        int contadorSalas = -1;
-        int contadorSalas2;
-        int contadorPessoas;
-
-        do {
-            contadorSalas = contadorSalas + 1;
-
-            if (contadorSalas == salasCadastradas.size() - 1) {
-                contadorSalas2 = 0;
-            } else {
-                contadorSalas2 = contadorSalas + 1;
-            }
-
-            Sala salaA = salasCadastradas.get(contadorSalas);
-            Sala salaB = salasCadastradas.get(contadorSalas2);
-
-            contadorPessoas = -1;
-
-            int metadeSala = (int) Math.ceil(getMaiorOcupacaoSalas() / 2.0);
-
-            do {
-                contadorPessoas = contadorPessoas + 1;
-
-                salaA.pessoasEtapa2.set(contadorPessoas, salaB.pessoasEtapa1.get(contadorPessoas));
-
-            } while (metadeSala > contadorPessoas + 1);
-
-        } while (contadorSalas != salasCadastradas.size() - 1);
     }
 
     private void distribuiPessoasEtapa1() {
@@ -112,7 +97,7 @@ public class Curso {
                     sala.adicionaPessoa(pessoa, lotacaoMaximaSalas);
 
                 } else {
-                    ocupacaoSalas = ocupacaoSalas + 1;
+                    ocupacaoSalas += 1;
 
                     if (ocupacaoSalas < lotacaoMaximaSalas - 1) {
 
@@ -137,6 +122,45 @@ public class Curso {
         }
     }
 
+    private void distribuiPessoasEtapa2() {
+
+        for (Sala sala : salasCadastradas) {
+            sala.pessoasEtapa2.addAll(sala.pessoasEtapa1);
+        }
+
+        if (salasCadastradas.size() >= 2) {
+
+            int contadorSalas = -1;
+            int contadorSalas2;
+            int contadorPessoas;
+
+            do {
+                contadorSalas = contadorSalas + 1;
+
+                if (contadorSalas == salasCadastradas.size() - 1) {
+                    contadorSalas2 = 0;
+                } else {
+                    contadorSalas2 = contadorSalas + 1;
+                }
+
+                Sala salaA = salasCadastradas.get(contadorSalas);
+                Sala salaB = salasCadastradas.get(contadorSalas2);
+
+                contadorPessoas = -1;
+
+                int metadeSala = (int) Math.ceil(getMaiorOcupacaoSalas() / 2.0);
+
+                do {
+                    contadorPessoas = contadorPessoas + 1;
+
+                    salaA.pessoasEtapa2.set(contadorPessoas, salaB.pessoasEtapa1.get(contadorPessoas));
+
+                } while (metadeSala > contadorPessoas + 1);
+
+            } while (contadorSalas != salasCadastradas.size() - 1);
+        }
+    }
+
     private void distribuiPessoasEspacos() {
 
         for (EspacoCafe espacoCafe : espacosCadastrados) {
@@ -155,7 +179,6 @@ public class Curso {
 
 
             } else if (espacosCadastrados.size() == 2) {
-
 
                 EspacoCafe espacoCafe1 = espacosCadastrados.get(0);
                 EspacoCafe espacoCafe2 = espacosCadastrados.get(1);

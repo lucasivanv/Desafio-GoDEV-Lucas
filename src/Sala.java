@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 class Sala {
-    String nome;
-    int lotacao;
+    private String nome;
+    private int lotacao;
     List<Pessoa> pessoasEtapa1 = new ArrayList<>();
     List<Pessoa> pessoasEtapa2 = new ArrayList<>();
 
@@ -26,4 +25,11 @@ class Sala {
         return false;
     }
 
+    public int getLotacao() {
+        return lotacao;
+    }
+
+    public String getNome() {
+        return nome;
+    }
 }
