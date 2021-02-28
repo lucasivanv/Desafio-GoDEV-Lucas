@@ -17,7 +17,7 @@ class Main {
 
         int opcao1;
         int opcao2;
-        int opcao3;
+        int itemEscolhido;
 
         Curso curso = new Curso();
 
@@ -55,7 +55,7 @@ class Main {
                             lotacao = converteInt(reader.readLine());
 
                             if (lotacao <= 0) {
-                                System.out.println("Lotação inválida, tente novamente");
+                                System.out.println("Lotação inválida, por favor tente novamente");
                             }
                         } while (lotacao <= 0);
 
@@ -75,7 +75,7 @@ class Main {
                                 lotacao = converteInt(reader.readLine());
 
                                 if (lotacao <= 0) {
-                                    System.out.println("Lotação inválida, tente novamente");
+                                    System.out.println("Lotação inválida, por favor tente novamente");
                                 }
                             } while (lotacao <= 0);
 
@@ -114,15 +114,15 @@ class Main {
                                     System.out.println(" " + indice + ")" + pessoa.getNomeCompleto());
                                 }
 
-                                opcao3 = converteInt(reader.readLine());
-                                if (indice < opcao3 || 0 >= opcao3) {
+                                itemEscolhido = converteInt(reader.readLine());
+                                if (indice < itemEscolhido || 0 >= itemEscolhido) {
                                     System.out.println("Opção inválida, por favor tente novamente");
                                 } else {
                                     break;
                                 }
-                            } while (opcao3 != Integer.MAX_VALUE);
+                            } while (itemEscolhido != Integer.MAX_VALUE);
 
-                            Pessoa pessoa = curso.pessoasCadastradas.get(opcao3 - 1);
+                            Pessoa pessoa = curso.pessoasCadastradas.get(itemEscolhido - 1);
 
                             System.out.println("Aluno(a) escolhido(a): " + pessoa.getNomeCompleto());
 
@@ -156,15 +156,15 @@ class Main {
                                     System.out.println(" " + indice + ")" + sala.getNome());
                                 }
 
-                                opcao3 = converteInt(reader.readLine());
-                                if (indice < opcao3 || 0 >= opcao3) {
+                                itemEscolhido = converteInt(reader.readLine());
+                                if (indice < itemEscolhido || 0 >= itemEscolhido) {
                                     System.out.println("Opção inválida, por favor tente novamente");
                                 } else {
                                     break;
                                 }
-                            } while (opcao3 != Integer.MAX_VALUE);
+                            } while (itemEscolhido != Integer.MAX_VALUE);
 
-                            Sala sala = curso.salasCadastradas.get(opcao3 - 1);
+                            Sala sala = curso.salasCadastradas.get(itemEscolhido - 1);
 
                             System.out.println("Sala escolhida: " + sala.getNome() + "\nAluno(s) nesta sala (1 Etapa):");
 
@@ -192,16 +192,16 @@ class Main {
                                     System.out.println(" " + indice + ")" + espacoCafe.getNome());
                                 }
 
-                                opcao3 = converteInt(reader.readLine());
+                                itemEscolhido = converteInt(reader.readLine());
 
-                                if (indice < opcao3 || 0 >= opcao3) {
+                                if (indice < itemEscolhido || 0 >= itemEscolhido) {
                                     System.out.println("Opção inválida, por favor tente novamente");
                                 } else {
                                     break;
                                 }
-                            } while (opcao3 != Integer.MAX_VALUE);
+                            } while (itemEscolhido != Integer.MAX_VALUE);
 
-                            EspacoCafe espacoCafe = curso.espacosCadastrados.get(opcao3 - 1);
+                            EspacoCafe espacoCafe = curso.espacosCadastrados.get(itemEscolhido - 1);
 
                             System.out.println("Espaço de café escolhido: " + espacoCafe.getNome() + "\nAluno(s) neste espaço:");
 
