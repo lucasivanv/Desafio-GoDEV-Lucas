@@ -33,14 +33,59 @@ mvn test
 
 
 ## Documentação do sistema
-* O código foi desenvolvido com auxílio do IntelliJ IDEA Community. Entretanto, como a execução dos testes unitários necessita da biblioteca JUnit 5, encontrei a alternativa de uso da ferramenta Maven para permitir a execução do código e dos testes fora do IntelliJ; 
+* O código foi desenvolvido com auxílio do [IntelliJ IDEA Community](https://www.jetbrains.com/idea/). Entretanto, como a execução dos testes unitários necessita da biblioteca JUnit 5, encontrei a alternativa de uso da ferramenta Maven para permitir a execução do código e dos testes fora do IntelliJ; 
 
 
 * A estruturação do projeto seguiu o padrão do Maven;  
 
 
 * A interface do usuário foi desenvolvida para o console;
+    * Menu principal
+    ```
+    MENU
+    Selecione uma opção:
+    1)Cadastro de Pessoa/Sala/Espaço de café
+    2)Consulta de Pessoa/Sala/Espaço de café
+    3)Sair
+    ```
+
+    * Menu de cadastro (cada opção requer campos específicos)
+    ```
+    MENU
+    Selecione uma opção:
+    1)Cadastrar nome
+    2)Cadastrar sala
+    3)Cadastrar espaço
+    4)Retornar
+    ```
   
+    * Menu de consulta
+    ```
+    MENU
+    Selecione uma opção:
+    1)Consultar nome
+    2)Consultar sala
+    3)Consultar espaço
+    4)Retornar
+    ```
+  
+    * Exemplo de consulta
+    ```
+    MENU
+    Selecione o(a) aluno(a):
+    1)Lucas Ivan
+    2)Ana Maria
+    3)João Pedro
+    4)José da Silva
+  
+    1
+  
+    Aluno(a) escolhido(a): Lucas Ivan
+    Sala presente (1 Etapa): Sala 01
+    Sala presente (2 Etapa): Sala 02
+    Espaço de café presente: Espaço de café 01
+    ```
+
 
 * Abaixo é listado as classes presentes no código e suas funcionalidades:
   
