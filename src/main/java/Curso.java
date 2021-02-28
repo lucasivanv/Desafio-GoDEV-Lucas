@@ -44,24 +44,20 @@ public class Curso {
         }
     }
 
-    public String quantidadePessoasPorLotacao() {
+    public boolean lotacaoMaximaAtingida() {
 
-        int somaTotalLotacoes = 0;
+        int somaTotalLotacoesSalas = 0;
+        int somaTotalLotacoesEspacos = 0;
 
         for (Sala sala : salasCadastradas) {
-            somaTotalLotacoes += sala.getLotacao();
-        }
-
-        if (somaTotalLotacoes < pessoasCadastradas.size()) {
-            System.out.println("Aviso: o número de pessoas cadastradas é superior a soma das lotações de todas as salas");
+            somaTotalLotacoesSalas += sala.getLotacao();
         }
 
         for (EspacoCafe espacoCafe : espacosCadastrados) {
-            somaTotalLotacoes += espacoCafe.getLotacao();
-
+            somaTotalLotacoesEspacos += espacoCafe.getLotacao();
         }
 
-        return null;
+        return somaTotalLotacoesSalas < pessoasCadastradas.size() || somaTotalLotacoesEspacos < pessoasCadastradas.size();
     }
 
     public void distribuiPessoas() {

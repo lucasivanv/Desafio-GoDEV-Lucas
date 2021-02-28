@@ -91,7 +91,9 @@ public class Main {
 
                 } while (opcao2 != 4);
 
-                curso.quantidadePessoasPorLotacao();
+                if (curso.lotacaoMaximaAtingida()) {
+                    System.out.println("Aviso: o número de pessoas cadastradas é superior a soma das lotações de todas as salas e/ou espaços de café");
+                }
 
                 curso.distribuiPessoas();
 
