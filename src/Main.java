@@ -104,15 +104,23 @@ class Main {
 
                     if (opcao2 == 1) {
                         if (curso.pessoasCadastradas.size() != 0) {
+
                             System.out.println("\nMENU\n Selecione o(a) aluno(a):");
 
-                            int indice = 0;
-                            for (Pessoa pessoa : curso.pessoasCadastradas) {
-                                indice = indice + 1;
-                                System.out.println(" " + indice + ")" + pessoa.getNomeCompleto());
-                            }
+                            do {
+                                int indice = 0;
+                                for (Pessoa pessoa : curso.pessoasCadastradas) {
+                                    indice = indice + 1;
+                                    System.out.println(" " + indice + ")" + pessoa.getNomeCompleto());
+                                }
 
-                            opcao3 = converteInt(reader.readLine());
+                                opcao3 = converteInt(reader.readLine());
+                                if (indice < opcao3 || 0 >= opcao3) {
+                                    System.out.println("Opção inválida, por favor tente novamente");
+                                } else {
+                                    break;
+                                }
+                            } while (opcao3 != Integer.MAX_VALUE);
 
                             Pessoa pessoa = curso.pessoasCadastradas.get(opcao3 - 1);
 
@@ -141,14 +149,20 @@ class Main {
 
                         if (curso.salasCadastradas.size() != 0) {
                             System.out.println("\nMENU\n Selecione a sala:");
+                            do {
+                                int indice = 0;
+                                for (Sala sala : curso.salasCadastradas) {
+                                    indice = indice + 1;
+                                    System.out.println(" " + indice + ")" + sala.getNome());
+                                }
 
-                            int indice = 0;
-                            for (Sala sala : curso.salasCadastradas) {
-                                indice = indice + 1;
-                                System.out.println(" " + indice + ")" + sala.getNome());
-                            }
-
-                            opcao3 = converteInt(reader.readLine());
+                                opcao3 = converteInt(reader.readLine());
+                                if (indice < opcao3 || 0 >= opcao3) {
+                                    System.out.println("Opção inválida, por favor tente novamente");
+                                } else {
+                                    break;
+                                }
+                            } while (opcao3 != Integer.MAX_VALUE);
 
                             Sala sala = curso.salasCadastradas.get(opcao3 - 1);
 
@@ -171,14 +185,21 @@ class Main {
 
                         if (curso.espacosCadastrados.size() != 0) {
                             System.out.println("\nMENU\n Selecione o espaço de café:");
+                            do {
+                                int indice = 0;
+                                for (EspacoCafe espacoCafe : curso.espacosCadastrados) {
+                                    indice = indice + 1;
+                                    System.out.println(" " + indice + ")" + espacoCafe.getNome());
+                                }
 
-                            int indice = 0;
-                            for (EspacoCafe espacoCafe : curso.espacosCadastrados) {
-                                indice = indice + 1;
-                                System.out.println(" " + indice + ")" + espacoCafe.getNome());
-                            }
+                                opcao3 = converteInt(reader.readLine());
 
-                            opcao3 = converteInt(reader.readLine());
+                                if (indice < opcao3 || 0 >= opcao3) {
+                                    System.out.println("Opção inválida, por favor tente novamente");
+                                } else {
+                                    break;
+                                }
+                            } while (opcao3 != Integer.MAX_VALUE);
 
                             EspacoCafe espacoCafe = curso.espacosCadastrados.get(opcao3 - 1);
 

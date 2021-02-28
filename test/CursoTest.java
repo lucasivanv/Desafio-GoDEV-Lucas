@@ -55,4 +55,49 @@ class CursoTest {
             assertEquals(sala.pessoasEtapa1.size() - Math.ceil(sala.pessoasEtapa1.size() / 2.0), pessoasNaMesmaSalaEntreEtapas);
         }
     }
+
+    @Test
+    public void testPessoaNaoRepeteEntreSalasOuEspacos(){
+        Curso curso = new Curso();
+
+        for (int i=0; i < 5; i++) {
+            curso.cadastraPessoa(String.format("nome %d",i), String.format("sobrenome %d",i));
+        }
+
+        curso.cadastraSala("Primeira", 2);
+        curso.cadastraSala("Segunda", 100);
+
+        curso.cadastraEspaco("Primeiro", 2);
+        curso.cadastraEspaco("Segundo", 100);
+
+        curso.distribuiPessoas();
+
+        Sala sala1 = curso.salasCadastradas.get(0);
+        Sala sala2 = curso.salasCadastradas.get(1);
+
+        EspacoCafe espacoCafe1 = curso.espacosCadastrados.get(0);
+        EspacoCafe espacoCafe2 = curso.espacosCadastrados.get(1);
+
+        boolean verificador;
+
+        for (Pessoa pessoa : sala1.pessoasEtapa1) {
+            verificador = sala1.pessoasEtapa1.contains(pessoa) && sala2.pessoasEtapa1.contains(pessoa);
+
+            assertFalse(verificador);
+        }
+
+        for (Pessoa pessoa : sala1.pessoasEtapa2) {
+            verificador = sala1.pessoasEtapa2.contains(pessoa) && sala2.pessoasEtapa2.contains(pessoa);
+
+            assertFalse(verificador);
+        }
+
+//        for (Pessoa pessoa : espacoCafe1.getPessoas()) {
+//            verificador = espacoCafe1.contains(pessoa) && sala2.pessoasEtapa1.contains(pessoa);
+//
+//            assertFalse(verificador);
+//        }
+
+
+    }
 }
