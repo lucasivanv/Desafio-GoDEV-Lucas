@@ -2,13 +2,13 @@
 
 Programa desenvolvido em linguagem Java para a gestão de um curso de treinamento. Esse ocorre em 2 etapas e com dois intervalos de café. Assim, o programa é responsável pelo cadastro e consulta de pessoas participantes, salas de treinamento e espaços para intervalos. 
 
-##Instalação
-Para execução do código, é necessário a instalação do JDK 15.0 e, para execução dos testes unitários, é necessário instalar o Maven.
+## Instalação
+Para execução do código, é necessário a instalação do [JDK 15.0.2](https://www.oracle.com/br/java/technologies/javase-jdk15-downloads.html) e, para execução dos testes unitários, é necessário instalar o Maven.
 
-###Instalação do Maven
+### Instalação do Maven
 A instalação do Maven é realizada conforme descrita [na documentação oficial](https://maven.apache.org/install.html).
 
-###Como executar código
+### Como executar código
 A execução do código no Prompt de Comando (CMD) ocorre a partir dos seguintes passos:
 
 1. Abrir o diretório dos arquivos no CMD
@@ -25,14 +25,14 @@ A execução do código no Prompt de Comando (CMD) ocorre a partir dos seguintes
    mvn exec:java
    ```
 
-###Como executar testes unitários
+### Como executar testes unitários
 Os testes unitários são executados no CMD, após a compilação do código, através do comando:
 ```
 mvn test
 ```
 
 
-##Documentação do sistema
+## Documentação do sistema
 * O código foi desenvolvido com auxílio do IntelliJ IDEA Community. Entretanto, como a execução dos testes unitários necessita da biblioteca JUnit 5, encontrei a alternativa de uso da ferramenta Maven para permitir a execução do código e dos testes fora do IntelliJ; 
 
 
