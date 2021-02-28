@@ -57,47 +57,45 @@ class CursoTest {
     }
 
     @Test
-    public void testPessoaNaoRepeteEntreSalasOuEspacos(){
+    public void testPessoaNaoRepeteEntreSalas(){
         Curso curso = new Curso();
 
-        for (int i=0; i < 5; i++) {
+        for (int i=0; i < 11; i++) {
             curso.cadastraPessoa(String.format("nome %d",i), String.format("sobrenome %d",i));
         }
 
-        curso.cadastraSala("Primeira", 2);
+        curso.cadastraSala("Primeira", 10);
         curso.cadastraSala("Segunda", 100);
-
-        curso.cadastraEspaco("Primeiro", 2);
-        curso.cadastraEspaco("Segundo", 100);
 
         curso.distribuiPessoas();
 
         Sala sala1 = curso.salasCadastradas.get(0);
         Sala sala2 = curso.salasCadastradas.get(1);
 
+        for (Pessoa pessoa : curso.pessoasCadastradas) {
+            assertNotEquals(sala1.pessoasEtapa1.contains(pessoa), sala2.pessoasEtapa1.contains(pessoa));
+            assertNotEquals(sala1.pessoasEtapa2.contains(pessoa), sala2.pessoasEtapa2.contains(pessoa));
+        }
+    }
+
+    @Test
+    public void testPessoaNaoRepeteEntreEspacos(){
+        Curso curso = new Curso();
+
+        for (int i=0; i < 11; i++) {
+            curso.cadastraPessoa(String.format("nome %d",i), String.format("sobrenome %d",i));
+        }
+
+        curso.cadastraEspaco("Primeiro", 10);
+        curso.cadastraEspaco("Segundo", 100);
+
+        curso.distribuiPessoas();
+
         EspacoCafe espacoCafe1 = curso.espacosCadastrados.get(0);
         EspacoCafe espacoCafe2 = curso.espacosCadastrados.get(1);
 
-        boolean verificador;
-
-        for (Pessoa pessoa : sala1.pessoasEtapa1) {
-            verificador = sala1.pessoasEtapa1.contains(pessoa) && sala2.pessoasEtapa1.contains(pessoa);
-
-            assertFalse(verificador);
+        for (Pessoa pessoa : curso.pessoasCadastradas) {
+            assertNotEquals(espacoCafe1.contemPessoa(pessoa), espacoCafe2.contemPessoa(pessoa));
         }
-
-        for (Pessoa pessoa : sala1.pessoasEtapa2) {
-            verificador = sala1.pessoasEtapa2.contains(pessoa) && sala2.pessoasEtapa2.contains(pessoa);
-
-            assertFalse(verificador);
-        }
-
-//        for (Pessoa pessoa : espacoCafe1.getPessoas()) {
-//            verificador = espacoCafe1.contains(pessoa) && sala2.pessoasEtapa1.contains(pessoa);
-//
-//            assertFalse(verificador);
-//        }
-
-
     }
 }
