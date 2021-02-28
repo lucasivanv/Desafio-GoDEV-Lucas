@@ -127,11 +127,11 @@ class Main {
                             System.out.println("Aluno(a) escolhido(a): " + pessoa.getNomeCompleto());
 
                             for (Sala sala : curso.salasCadastradas) {
-                                if (sala.pessoasEtapa1.contains(pessoa)) {
+                                if (sala.contemPessoaEtapa1(pessoa)) {
                                     System.out.println(" Sala presente (1 Etapa): " + sala.getNome());
                                 }
 
-                                if (sala.pessoasEtapa2.contains(pessoa)) {
+                                if (sala.contemPessoaEtapa2(pessoa)) {
                                     System.out.println(" Sala presente (2 Etapa): " + sala.getNome());
                                 }
                             }
@@ -168,13 +168,13 @@ class Main {
 
                             System.out.println("Sala escolhida: " + sala.getNome() + "\nAluno(s) nesta sala (1 Etapa):");
 
-                            for (Pessoa pessoa : sala.pessoasEtapa1) {
+                            for (Pessoa pessoa : sala.getPessoasEtapa1()) {
                                 System.out.println(" " + pessoa.getNomeCompleto());
                             }
 
                             System.out.println("Sala escolhida: " + sala.getNome() + "\nAluno(s) nesta sala (2 Etapa):");
 
-                            for (Pessoa pessoa : sala.pessoasEtapa2) {
+                            for (Pessoa pessoa : sala.getPessoasEtapa2()) {
                                 System.out.println(" " + pessoa.getNomeCompleto());
                             }
                         } else {

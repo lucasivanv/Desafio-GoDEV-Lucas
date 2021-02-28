@@ -23,8 +23,8 @@ class CursoTest {
         Sala sala1 = curso.salasCadastradas.get(0);
         Sala sala2 = curso.salasCadastradas.get(1);
 
-        assertEquals(2,sala1.pessoasEtapa1.size());
-        assertEquals(3,sala2.pessoasEtapa1.size());
+        assertEquals(2,sala1.getPessoasEtapa1().size());
+        assertEquals(3,sala2.getPessoasEtapa1().size());
     }
 
     @ParameterizedTest
@@ -46,13 +46,13 @@ class CursoTest {
 
             int pessoasNaMesmaSalaEntreEtapas = 0;
 
-            for (Pessoa pessoa : sala.pessoasEtapa1) {
+            for (Pessoa pessoa : sala.getPessoasEtapa1()) {
 
-                if (sala.pessoasEtapa2.contains(pessoa)) {
+                if (sala.contemPessoaEtapa2(pessoa)) {
                     pessoasNaMesmaSalaEntreEtapas += 1;
                 }
             }
-            assertEquals(sala.pessoasEtapa1.size() - Math.ceil(sala.pessoasEtapa1.size() / 2.0), pessoasNaMesmaSalaEntreEtapas);
+            assertEquals(sala.getPessoasEtapa1().size() - Math.ceil(sala.getPessoasEtapa1().size() / 2.0), pessoasNaMesmaSalaEntreEtapas);
         }
     }
 
@@ -73,8 +73,8 @@ class CursoTest {
         Sala sala2 = curso.salasCadastradas.get(1);
 
         for (Pessoa pessoa : curso.pessoasCadastradas) {
-            assertNotEquals(sala1.pessoasEtapa1.contains(pessoa), sala2.pessoasEtapa1.contains(pessoa));
-            assertNotEquals(sala1.pessoasEtapa2.contains(pessoa), sala2.pessoasEtapa2.contains(pessoa));
+            assertNotEquals(sala1.contemPessoaEtapa1(pessoa), sala2.contemPessoaEtapa1(pessoa));
+            assertNotEquals(sala1.contemPessoaEtapa2(pessoa), sala2.contemPessoaEtapa2(pessoa));
         }
     }
 

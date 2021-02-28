@@ -125,14 +125,14 @@ public class Curso {
     private void distribuiPessoasEtapa2() {
 
         for (Sala sala : salasCadastradas) {
-            sala.pessoasEtapa2.addAll(sala.pessoasEtapa1);
+            sala.moveTodasPessoasParaEtapa2();
         }
 
         if (salasCadastradas.size() >= 2) {
 
             int contadorSalas = -1;
             int contadorSalas2;
-            int contadorPessoas;
+            int indicePessoa;
 
             do {
                 contadorSalas = contadorSalas + 1;
@@ -146,16 +146,16 @@ public class Curso {
                 Sala salaA = salasCadastradas.get(contadorSalas);
                 Sala salaB = salasCadastradas.get(contadorSalas2);
 
-                contadorPessoas = -1;
+                indicePessoa = -1;
 
                 int metadeSala = (int) Math.ceil(getMaiorOcupacaoSalas() / 2.0);
 
                 do {
-                    contadorPessoas = contadorPessoas + 1;
+                    indicePessoa += 1;
 
-                    salaA.pessoasEtapa2.set(contadorPessoas, salaB.pessoasEtapa1.get(contadorPessoas));
+                    salaA.trocaComSala(indicePessoa, salaB);
 
-                } while (metadeSala > contadorPessoas + 1);
+                } while (metadeSala > indicePessoa + 1);
 
             } while (contadorSalas != salasCadastradas.size() - 1);
         }
@@ -208,8 +208,8 @@ public class Curso {
         int maiorOcupacao = 0;
 
         for (Sala sala : salasCadastradas) {
-            if (sala.pessoasEtapa1.size() > maiorOcupacao) {
-                maiorOcupacao = sala.pessoasEtapa1.size();
+            if (sala.getPessoasEtapa1().size() > maiorOcupacao) {
+                maiorOcupacao = sala.getPessoasEtapa1().size();
             }
         }
         return maiorOcupacao;
